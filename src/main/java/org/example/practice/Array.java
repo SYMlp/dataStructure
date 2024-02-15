@@ -52,7 +52,7 @@ public class Array<T> implements Iterable<T> {
             return expansionCapacity();
         }
 
-        return false
+        return false;
     }
 
     // 扩容
