@@ -55,6 +55,39 @@ public class Array <T> implements Iterable <T> {
         return data;
     }
 
+    public T removeAt2(int rm_index) {
+        // 比起添加，因为是移除，首先的判断有没有，有才能移除
+        // 移除： 新建数组，把index下标的值拿掉
+        // 保证index是合法的
+        if (rm_index < 0 || rm_index > len) { throw new IndexOutOfBoundsException(); }
+        T data = arr[rm_index];
+        T[] new_arr = (T[])new Object[--capacity];
+        for (int i = 0, j = 0; i < len; i++,j++) {
+            // rm_index 是索引下标还是个数？ 下标吧应该是
+            new_arr[j] = arr[i];
+            if ( i == rm_index) { j--; } // j是控制new_arr中数据的
+        }
+        --len;
+        arr = new_arr;
+        return data;
+    }
+
+    public static void main(String[] args) {
+        Array<String> arr1 = new Array<>(10);
+        arr1.add("a");
+        arr1.add("b");
+        arr1.add("c");
+
+        Array<String> arr2 = new Array<>(10);
+        arr2.add("a");
+        arr2.add("b");
+        arr2.add("c");
+        System.out.println(arr1.removeAt(1) + "|" + arr1.toString());
+        System.out.println(arr2.removeAt(1) + "|" + arr2.toString());
+        System.out.println("capacity2 :" + arr2.capacity + "| size: " + arr2.size());
+        System.out.println("capacity2 :" + arr2.capacity + "| size: " + arr2.size());
+
+    }
     public boolean remove(Object obj) {
         for (int i = 0; i < len; i++) {
             if (arr[i].equals(obj)) {
